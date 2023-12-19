@@ -8,14 +8,14 @@ const NavBar = () => {
           Film App
         </NavLink>
       </div>
-      <div className="join flex-1 mx-2 lg:mx-20">
+      <div className="join flex-1 mx-2 lg:ml-36">
         <input
           className="input input-bordered join-item w-full"
           placeholder="Search for films..."
         />
         <button className="btn btn-neutral join-item">Search</button>
       </div>
-      <button className="btn btn-primary mr-5">
+      <button className="btn btn-sm btn-primary mr-5 sm:btn">
         <NavLink to="/my-films">My films</NavLink>
       </button>
       <label className="flex cursor-pointer gap-2 mr-5">
