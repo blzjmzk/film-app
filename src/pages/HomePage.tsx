@@ -12,7 +12,7 @@ interface Props {
 const HomePage = ({ movies, isLoading, error }: Props) => {
   return (
     <>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mx-8">
         {isLoading && <Loader />}
         {!isLoading && !error && <MovieList movies={movies} />}
         {error && <ErrorMessage error={error} />}

@@ -7,7 +7,7 @@ import Layout from "./pages/Layout";
 import UserFilms from "./pages/UserFilms";
 
 const KEY = "93104c0d";
-const query = "dafadfa";
+const query = "private ryan";
 
 const App = () => {
   const [movies, setMovies] = useState<Movie[]>([]);

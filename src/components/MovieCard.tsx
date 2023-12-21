@@ -7,12 +7,13 @@ interface Props {
 const MovieCard = ({ movie }: Props) => {
   return (
     <>
-      <div
-        id={movie.imdbID}
-        className="card card-side bg-neutral shadow-xl w-96 my-4 transform hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out"
-      >
-        <figure className="w-40">
-          <img src={movie.Poster} alt="Movie" />
+      <div className="card card-side bg-neutral shadow-xl my-4 transform sm:w-96 hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out">
+        <figure>
+          <img
+            src={movie.Poster}
+            alt="Movie"
+            className="w-full h-56 object-cover"
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title text-neutral-content">
