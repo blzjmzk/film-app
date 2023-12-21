@@ -4,18 +4,28 @@ import Movie from "../entities/Movie";
 
 interface Props {
   movies: Movie[];
+  isLoading: boolean;
 }
 
-const HomePage = ({ movies }: Props) => {
+const HomePage = ({ movies, isLoading }: Props) => {
   return (
     <>
-      <h2 className="text-center mt-2 mb-4">Found {movies.length} results</h2>
       <div className="flex flex-col items-center ">
-        {movies.map((movie) => (
-          <Link key={movie.imdbID} to={/films/ + movie.Title}>
-            <MovieCard movie={movie} />
-          </Link>
-        ))}
+        {isLoading ? (
+          <span className="loading loading-dots loading-lg mt-28"></span>
+        ) : (
+          <>
+            <h2 className="text-center mt-2 mb-4">
+              Found {movies.length} results
+            </h2>
+
+            {movies.map((movie) => (
+              <Link key={movie.imdbID} to={`/films/${movie.Title}`}>
+                <MovieCard movie={movie} />
+              </Link>
+            ))}
+          </>
+        )}
       </div>
     </>
   );
