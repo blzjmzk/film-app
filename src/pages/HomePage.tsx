@@ -16,7 +16,7 @@ const HomePage = ({ movies, isLoading, error, onSelectMovie }: Props) => {
       <div className="flex flex-col items-center mx-8">
         {isLoading && <Loader />}
         {!isLoading && !error && (
-          <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
+          <MovieList movies={movies} onSelectMovie={onSelectMovie} />
         )}
         {error && <ErrorMessage error={error} />}
       </div>

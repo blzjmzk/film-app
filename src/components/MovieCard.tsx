@@ -5,10 +5,13 @@ interface Props {
   onSelectMovie: (id: string) => void;
 }
 
-const MovieCard = ({ movie }: Props) => {
+const MovieCard = ({ movie, onSelectMovie }: Props) => {
   return (
     <>
-      <div className="card card-side bg-neutral shadow-xl my-4 transform sm:w-96 hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out">
+      <div
+        onClick={() => onSelectMovie(movie.imdbID)}
+        className="card card-side bg-neutral shadow-xl my-4 transform sm:w-96 hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out"
+      >
         <figure>
           <img src={movie.Poster} alt="Movie" />
         </figure>

@@ -17,8 +17,9 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
 
-  const handleSelectMovie = (id: string) => setSelectedId(id);
-
+  const handleSelectMovie = (id: string) => {
+    setSelectedId(id);
+  };
   useEffect(
     function () {
       async function fetchMovies() {
@@ -70,7 +71,7 @@ const App = () => {
           ),
         },
         { path: "my-films", element: <UserFilms /> },
-        { path: "films/:title", element: <FilmPage /> },
+        { path: "films/:title", element: <FilmPage filmId={selectedId} /> },
       ],
     },
   ]);

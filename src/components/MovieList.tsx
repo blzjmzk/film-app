@@ -13,7 +13,7 @@ const MovieList = ({ movies, onSelectMovie }: Props) => {
       <h2 className="text-center mt-2 mb-4">Found {movies.length} results</h2>
       {movies.map((movie) => (
         <Link key={movie.imdbID} to={`/films/${movie.Title}`}>
-          <MovieCard movie={movie} />
+          <MovieCard movie={movie} onSelectMovie={onSelectMovie} />
         </Link>
       ))}
     </>
