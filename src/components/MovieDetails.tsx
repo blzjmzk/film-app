@@ -10,7 +10,7 @@ interface Props {
 }
 
 const MovieDetails = ({ filmId }: Props) => {
-  const [movie, setMovie] = useState<Movie[]>([]);
+  const [movie, setMovie] = useState<Movie | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(
@@ -35,43 +35,43 @@ const MovieDetails = ({ filmId }: Props) => {
         <MovieDetailsSkeletons />
       ) : (
         <>
-          <div className="flex flex-col items-center ">
+          <div className="flex flex-col items-center mx-auto max-w-4xl p-7">
             <div>
               <div className="flex flex-row">
                 <div>
-                  <img className="" src={movie.Poster} alt="Movie" />
+                  <img className="rounded-lg" src={movie?.Poster} alt="Movie" />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <p className="text-xl font-bold">{movie.Title}</p>
+                <div className="flex flex-col gap-2 pl-6">
+                  <p className="text-xl font-bold mb-5">{movie?.Title}</p>
                   <div className="flex flex-row gap-2">
                     <div className="badge badge-outline">Year</div>
-                    <div className="">{movie.Year}</div>
+                    <div className="">{movie?.Year}</div>
                   </div>
                   <div className="flex flex-row gap-2">
                     <div className="badge badge-outline">Genre</div>
-                    <div className="">{movie.Genre}</div>
+                    <div className="">{movie?.Genre}</div>
                   </div>
                   <div className="flex flex-row gap-2">
                     <div className="badge badge-outline">Director</div>
-                    <div className="">{movie.Director}</div>
+                    <div className="">{movie?.Director}</div>
                   </div>
                   <div className="flex flex-row gap-2">
                     <div className="badge badge-outline">IMDB Rating</div>
-                    <div className="">{movie.imdbRating}</div>
+                    <div className="">{movie?.imdbRating}</div>
                   </div>
                   <div className="flex flex-row gap-2">
                     <div className="badge badge-outline">Runtime</div>
-                    <div className="">{movie.Runtime}</div>
+                    <div className="">{movie?.Runtime}</div>
                   </div>
                 </div>
               </div>
-              <div>
-                <div>{movie.Plot}</div>
-                <div className="flex flex-row gap-3">
+              <div className="mt-6">
+                <div>{movie?.Plot}</div>
+                <div className="flex flex-row gap-3 mt-3">
                   <div>Your Rating:</div>
                   <StarRating />
                 </div>
-                <button className="btn btn-active btn-accent">
+                <button className="btn btn-active btn-accent mt-4">
                   Add to My Films
                 </button>
               </div>
@@ -84,14 +84,3 @@ const MovieDetails = ({ filmId }: Props) => {
 };
 
 export default MovieDetails;
-
-// Director: string;
-// Genre: string;
-// imdbID: string;
-// imdbRating: string;
-// Plot: string;
-// Poster: string;
-// Released: string;
-// Runtime: string;
-// Title: string;
-// Year: string;

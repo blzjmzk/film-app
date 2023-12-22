@@ -1,5 +1,3 @@
-import React from "react";
-
 const ThemeSwitcher = () => {
   return (
     <label className="swap swap-rotate mx-2">

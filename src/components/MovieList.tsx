@@ -10,7 +10,9 @@ interface Props {
 const MovieList = ({ movies, onSelectMovie }: Props) => {
   return (
     <>
-      <h2 className="text-center mt-2 mb-4">Found {movies.length} results</h2>
+      {movies.length > 0 && (
+        <h2 className="text-center mt-2 mb-4">Found {movies.length} results</h2>
+      )}
       {movies.map((movie) => (
         <Link key={movie.imdbID} to={`/films/${movie.Title}`}>
           <MovieCard movie={movie} onSelectMovie={onSelectMovie} />
