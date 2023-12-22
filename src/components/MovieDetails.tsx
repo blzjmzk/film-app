@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Movie from "../entities/Movie";
+import StarRating from "./StarRating";
 
 const KEY = "93104c0d";
 
@@ -9,17 +10,23 @@ interface Props {
 
 const MovieDetails = ({ filmId }: Props) => {
   const [movie, setMovie] = useState<Movie[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(function () {
-    async function getMovieDetails() {
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${KEY}&i=${filmId}`
-      );
-      const data = await res.json();
-      setMovie(data);
-    }
-    getMovieDetails();
-  }, []);
+  useEffect(
+    function () {
+      async function getMovieDetails() {
+        setIsLoading(true);
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}&i=${filmId}`
+        );
+        const data = await res.json();
+        setMovie(data);
+        setIsLoading(false);
+      }
+      getMovieDetails();
+    },
+    [filmId]
+  );
 
   return (
     <>
@@ -27,7 +34,7 @@ const MovieDetails = ({ filmId }: Props) => {
         <div>
           <div className="flex flex-row">
             <div>
-              <img src={movie.Poster} alt="Movie" />
+              <img className="" src={movie.Poster} alt="Movie" />
             </div>
             <div className="flex flex-col gap-2">
               <p className="text-xl font-bold">{movie.Title}</p>
@@ -53,7 +60,16 @@ const MovieDetails = ({ filmId }: Props) => {
               </div>
             </div>
           </div>
-          <div>{movie.Plot}</div>
+          <div>
+            <div>{movie.Plot}</div>
+            <div className="flex flex-row gap-3">
+              <div>Your Rating:</div>
+              <StarRating />
+            </div>
+            <button className="btn btn-active btn-accent">
+              Add to My Films
+            </button>
+          </div>
         </div>
       </div>
     </>
