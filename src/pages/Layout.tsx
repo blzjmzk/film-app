@@ -1,10 +1,15 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
 
-const Layout = () => {
+interface Props {
+  query: string;
+  setQuery: (query: string) => void;
+}
+
+const Layout = ({ query, setQuery }: Props) => {
   return (
     <>
-      <NavBar />
+      <NavBar query={query} setQuery={setQuery} />
       <div id="main">
         <Outlet />
       </div>

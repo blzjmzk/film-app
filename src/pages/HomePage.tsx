@@ -7,14 +7,17 @@ interface Props {
   movies: Movie[];
   isLoading: boolean;
   error?: string;
+  onSelectMovie: (id: string) => void;
 }
 
-const HomePage = ({ movies, isLoading, error }: Props) => {
+const HomePage = ({ movies, isLoading, error, onSelectMovie }: Props) => {
   return (
     <>
       <div className="flex flex-col items-center mx-8">
         {isLoading && <Loader />}
-        {!isLoading && !error && <MovieList movies={movies} />}
+        {!isLoading && !error && (
+          <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
+        )}
         {error && <ErrorMessage error={error} />}
       </div>
     </>

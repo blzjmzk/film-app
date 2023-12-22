@@ -4,9 +4,10 @@ import MovieCard from "./MovieCard";
 
 interface Props {
   movies: Movie[];
+  onSelectMovie: (id: string) => void;
 }
 
-const MovieList = ({ movies }: Props) => {
+const MovieList = ({ movies, onSelectMovie }: Props) => {
   return (
     <>
       <h2 className="text-center mt-2 mb-4">Found {movies.length} results</h2>

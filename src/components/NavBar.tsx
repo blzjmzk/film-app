@@ -1,7 +1,13 @@
 import { NavLink } from "react-router-dom";
 import ThemeSwitcher from "./ThemeSwitcher";
+import Search from "./Search";
 
-const NavBar = () => {
+interface Props {
+  query: string;
+  setQuery: (query: string) => void;
+}
+
+const NavBar = ({ query, setQuery }: Props) => {
   return (
     <>
       <NavLink
@@ -17,13 +23,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className="join flex-1 mx-2 lg:ml-36">
-          <input
-            className="input input-bordered input-sm join-item w-full sm:input-md"
-            placeholder="Search for films..."
-          />
-          <button className="btn btn-neutral btn-sm join-item sm:btn-md">
-            Search
-          </button>
+          <Search query={query} setQuery={setQuery} />
         </div>
         <button className="btn btn-primary btn-sm sm:btn-md">
           <NavLink to="/my-films">My films</NavLink>
