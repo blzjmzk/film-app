@@ -1,21 +1,25 @@
+import { useNavigate } from "react-router-dom";
+
 interface Props {
   query: string;
   setQuery: (query: string) => void;
 }
 
 const Search = ({ query, setQuery }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <input
         autoFocus
-        className="input input-bordered input-sm join-item w-full sm:input-md"
+        className="input input-bordered input-sm w-full sm:input-md"
         placeholder="Search for films..."
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          navigate("/");
+        }}
       />
-      <button className="btn btn-neutral btn-sm join-item sm:btn-md">
-        Search
-      </button>
     </>
   );
 };

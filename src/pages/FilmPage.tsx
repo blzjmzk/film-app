@@ -1,9 +1,11 @@
+import MovieDetails from "../components/MovieDetails";
+
 interface Props {
   filmId: string;
 }
 
 const FilmPage = ({ filmId }: Props) => {
-  return <div>FilmPage of film {filmId} </div>;
+  return <MovieDetails filmId={filmId} />;
 };
 
 export default FilmPage;
