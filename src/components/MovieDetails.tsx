@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Movie from "../entities/Movie";
 import StarRating from "./StarRating";
+import MovieDetailsSkeletons from "./MovieDetailsSkeletons";
 
 const KEY = "93104c0d";
 
@@ -30,48 +31,54 @@ const MovieDetails = ({ filmId }: Props) => {
 
   return (
     <>
-      <div className="flex flex-col items-center ">
-        <div>
-          <div className="flex flex-row">
+      {isLoading ? (
+        <MovieDetailsSkeletons />
+      ) : (
+        <>
+          <div className="flex flex-col items-center ">
             <div>
-              <img className="" src={movie.Poster} alt="Movie" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <p className="text-xl font-bold">{movie.Title}</p>
-              <div className="flex flex-row gap-2">
-                <div className="badge badge-outline">Year</div>
-                <div className="">{movie.Year}</div>
+              <div className="flex flex-row">
+                <div>
+                  <img className="" src={movie.Poster} alt="Movie" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <p className="text-xl font-bold">{movie.Title}</p>
+                  <div className="flex flex-row gap-2">
+                    <div className="badge badge-outline">Year</div>
+                    <div className="">{movie.Year}</div>
+                  </div>
+                  <div className="flex flex-row gap-2">
+                    <div className="badge badge-outline">Genre</div>
+                    <div className="">{movie.Genre}</div>
+                  </div>
+                  <div className="flex flex-row gap-2">
+                    <div className="badge badge-outline">Director</div>
+                    <div className="">{movie.Director}</div>
+                  </div>
+                  <div className="flex flex-row gap-2">
+                    <div className="badge badge-outline">IMDB Rating</div>
+                    <div className="">{movie.imdbRating}</div>
+                  </div>
+                  <div className="flex flex-row gap-2">
+                    <div className="badge badge-outline">Runtime</div>
+                    <div className="">{movie.Runtime}</div>
+                  </div>
+                </div>
               </div>
-              <div className="flex flex-row gap-2">
-                <div className="badge badge-outline">Genre</div>
-                <div className="">{movie.Genre}</div>
-              </div>
-              <div className="flex flex-row gap-2">
-                <div className="badge badge-outline">Director</div>
-                <div className="">{movie.Director}</div>
-              </div>
-              <div className="flex flex-row gap-2">
-                <div className="badge badge-outline">IMDB Rating</div>
-                <div className="">{movie.imdbRating}</div>
-              </div>
-              <div className="flex flex-row gap-2">
-                <div className="badge badge-outline">Runtime</div>
-                <div className="">{movie.Runtime}</div>
+              <div>
+                <div>{movie.Plot}</div>
+                <div className="flex flex-row gap-3">
+                  <div>Your Rating:</div>
+                  <StarRating />
+                </div>
+                <button className="btn btn-active btn-accent">
+                  Add to My Films
+                </button>
               </div>
             </div>
           </div>
-          <div>
-            <div>{movie.Plot}</div>
-            <div className="flex flex-row gap-3">
-              <div>Your Rating:</div>
-              <StarRating />
-            </div>
-            <button className="btn btn-active btn-accent">
-              Add to My Films
-            </button>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 };
