@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./StarRating.css";
-import { FaStar, FaRegStar } from "react-icons/fa6";
+import { FaStar, FaRegStar } from "react-icons/fa6"; //	CC BY 4.0 License
 
 interface Props {
   maxRating?: number;
