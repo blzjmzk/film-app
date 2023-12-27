@@ -1,4 +1,4 @@
-import { FaStar } from "react-icons/fa6";
+import { FaStar } from "react-icons/fa6"; //	CC BY 4.0 License
 
 interface Props {
   number?: number;
@@ -8,7 +8,7 @@ const Star = ({ number }: Props) => {
   return (
     <div className="relative">
       <FaStar className="text-yellow-400 text-5xl" />
-      <span className="absolute inset-1 flex items-center justify-center text-black text-lg">
+      <span className="absolute pt-1 inset-1 flex items-center justify-center text-black text-lg">
         {number}
       </span>
     </div>
