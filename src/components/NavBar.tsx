@@ -26,7 +26,7 @@ const NavBar = ({ query, setQuery }: Props) => {
           <Search query={query} setQuery={setQuery} />
         </div>
         <button className="btn btn-primary btn-sm mx-2 sm:btn-md">
-          <NavLink to="/my-films">My films</NavLink>
+          <NavLink to="/my-films">My Movies</NavLink>
         </button>
         <ThemeSwitcher />
       </div>
