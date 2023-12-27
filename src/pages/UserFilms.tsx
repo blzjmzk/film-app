@@ -1,5 +1,7 @@
+import MyMovie from "../components/MyMovie";
+
 const UserFilms = () => {
-  return <div>UserFilms</div>;
+  return <MyMovie />;
 };
 
 export default UserFilms;

@@ -10,7 +10,7 @@ const KEY = "93104c0d";
 
 const App = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  // const [watched, setWatched] = useState<Movie[]>([]);
+  const [watched, setWatched] = useState<Movie[]>([]);
   const [query, setQuery] = useState<string>("");
   const [selectedId, setSelectedId] = useState<string>("");
 

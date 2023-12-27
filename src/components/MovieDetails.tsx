@@ -71,9 +71,6 @@ const MovieDetails = ({ filmId }: Props) => {
                   <div>Your Rating:</div>
                   <StarRating />
                 </div>
-                <button className="btn btn-active btn-accent mt-4">
-                  Add to My Films
-                </button>
               </div>
             </div>
           </div>
