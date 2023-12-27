@@ -11,15 +11,20 @@ const KEY = "93104c0d";
 const App = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [watched, setWatched] = useState<Movie[]>([]);
+
   const [query, setQuery] = useState<string>("");
   const [selectedId, setSelectedId] = useState<string>("");
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
 
-  const handleSelectMovie = (id: string) => {
-    setSelectedId(id);
+  const handleSelectMovie = (id: string) => setSelectedId(id);
+
+  const handleAddWatched = (movie: Movie) => {
+    setWatched((watched) => [...watched, movie]);
+    console.log(watched);
   };
+
   useEffect(
     function () {
       async function fetchMovies() {
@@ -70,8 +75,14 @@ const App = () => {
             />
           ),
         },
-        { path: "my-films", element: <UserFilms /> },
-        { path: "films/:title", element: <FilmPage filmId={selectedId} /> },
+        { path: "my-films", element: <UserFilms watched={watched} /> },
+
+        {
+          path: "films/:title",
+          element: (
+            <FilmPage onAddWatched={handleAddWatched} filmId={selectedId} />
+          ),
+        },
       ],
     },
   ]);

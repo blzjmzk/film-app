@@ -7,11 +7,27 @@ const KEY = "93104c0d";
 
 interface Props {
   filmId: string;
+  onAddWatched: (movie: Movie) => void;
 }
 
-const MovieDetails = ({ filmId }: Props) => {
+const MovieDetails = ({ filmId, onAddWatched }: Props) => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [userRating, setUserRating] = useState<number>();
+
+  const handleAdd = (rating: number) => {
+    setUserRating(rating);
+    console.log(userRating);
+
+    const newWatchedMovie = {
+      imdbID: filmId,
+      Title: movie?.Title || "",
+      userRating: rating,
+      Poster: movie?.Poster || "",
+    };
+
+    onAddWatched(newWatchedMovie);
+  };
 
   useEffect(
     function () {
@@ -69,7 +85,7 @@ const MovieDetails = ({ filmId }: Props) => {
                 <div>{movie?.Plot}</div>
                 <div className="flex flex-row gap-3 mt-3">
                   <div>Your Rating:</div>
-                  <StarRating />
+                  <StarRating onSetRating={handleAdd} />
                 </div>
               </div>
             </div>
