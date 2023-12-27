@@ -9,7 +9,7 @@ const MovieCard = ({ movie, onSelectMovie }: Props) => {
   return (
     <>
       <div
-        onClick={() => onSelectMovie(movie.imdbID)}
+        onClick={() => onSelectMovie(movie.imdbID!)}
         className="card card-side bg-neutral shadow-xl my-4 transform sm:w-96 hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out"
       >
         <figure>

@@ -9,4 +9,5 @@ export default interface Movie {
   Runtime?: string;
   Title?: string;
   Year?: string;
+  userRating?: number;
 }
