@@ -7,20 +7,19 @@ const KEY = "93104c0d";
 
 interface Props {
   filmId: string;
+  watched: Movie[];
   onAddWatched: (movie: Movie) => void;
 }
 
-const MovieDetails = ({ filmId, onAddWatched }: Props) => {
+const MovieDetails = ({ filmId, onAddWatched, watched }: Props) => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [userRating, setUserRating] = useState<number>();
+
+  const isWatched = watched.map((movie) => movie.imdbID).includes(filmId);
 
   const handleAdd = (rating: number) => {
-    setUserRating(rating);
-    console.log(userRating);
-
     const newWatchedMovie = {
-      imdbID: filmId,
+      imdbID: movie?.imdbID,
       Title: movie?.Title || "",
       userRating: rating,
       Poster: movie?.Poster || "",
@@ -75,6 +74,14 @@ const MovieDetails = ({ filmId, onAddWatched }: Props) => {
                     <div className="badge badge-outline">IMDB Rating</div>
                     <div className="">{movie?.imdbRating}</div>
                   </div>
+                  {isWatched && (
+                    <div className="flex flex-row gap-2">
+                      <div className="badge badge-outline">Your rating</div>
+                      <div className="">
+                        {watched.find((m) => m.imdbID === filmId)?.userRating}
+                      </div>
+                    </div>
+                  )}
                   <div className="flex flex-row gap-2">
                     <div className="badge badge-outline">Runtime</div>
                     <div className="">{movie?.Runtime}</div>

@@ -22,7 +22,6 @@ const App = () => {
 
   const handleAddWatched = (movie: Movie) => {
     setWatched((watched) => [...watched, movie]);
-    console.log(watched);
   };
 
   useEffect(
@@ -80,7 +79,11 @@ const App = () => {
         {
           path: "films/:title",
           element: (
-            <FilmPage onAddWatched={handleAddWatched} filmId={selectedId} />
+            <FilmPage
+              onAddWatched={handleAddWatched}
+              filmId={selectedId}
+              watched={watched}
+            />
           ),
         },
       ],
