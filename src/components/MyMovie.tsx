@@ -3,7 +3,7 @@ import Star from "./Star";
 
 interface Props {
   movie: Movie;
-  onDeleteWatched: (id: string) => void;
+  onDeleteWatched: (id: string | undefined) => void;
 }
 
 const MyMovie = ({ movie, onDeleteWatched }: Props) => {

@@ -3,7 +3,7 @@ import Movie from "../entities/Movie";
 
 interface Props {
   watched: Movie[];
-  onDeleteWatched: (id: string) => void;
+  onDeleteWatched: (id: string | undefined) => void;
 }
 
 const UserFilms = ({ watched, onDeleteWatched }: Props) => {

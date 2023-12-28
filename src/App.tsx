@@ -24,7 +24,7 @@ const App = () => {
     setWatched((watched) => [...watched, movie]);
   };
 
-  const handleDeleteWatched = (id: string) => {
+  const handleDeleteWatched = (id: string | undefined) => {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   };
 
