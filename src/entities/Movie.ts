@@ -1,7 +1,7 @@
 export default interface Movie {
   Director?: string;
   Genre?: string;
-  imdbID?: string;
+  imdbID: string;
   imdbRating?: string;
   Plot?: string;
   Poster?: string;

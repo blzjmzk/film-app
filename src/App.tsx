@@ -24,6 +24,10 @@ const App = () => {
     setWatched((watched) => [...watched, movie]);
   };
 
+  const handleDeleteWatched = (id: string) => {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+  };
+
   const handleModifyWatched = (rating: number) => {
     setWatched(
       watched.map((movie) =>
@@ -82,7 +86,15 @@ const App = () => {
             />
           ),
         },
-        { path: "my-films", element: <UserFilms watched={watched} /> },
+        {
+          path: "my-films",
+          element: (
+            <UserFilms
+              watched={watched}
+              onDeleteWatched={handleDeleteWatched}
+            />
+          ),
+        },
 
         {
           path: "films/:title",

@@ -3,9 +3,10 @@ import Star from "./Star";
 
 interface Props {
   movie: Movie;
+  onDeleteWatched: (id: string) => void;
 }
 
-const MyMovie = ({ movie }: Props) => {
+const MyMovie = ({ movie, onDeleteWatched }: Props) => {
   return (
     <div className="card bg-base-300 p-2 shadow-xl">
       <figure className="relative">
@@ -16,6 +17,14 @@ const MyMovie = ({ movie }: Props) => {
       </figure>
       <div className="card-body max-w-[140px]">
         <h2 className="card-title text-sm text-center">{movie.Title}</h2>
+        <div className="card-actions justify-center">
+          <button
+            className="btn btn-xs btn-accent"
+            onClick={() => onDeleteWatched(movie.imdbID)}
+          >
+            Remove
+          </button>
+        </div>
       </div>
     </div>
   );
