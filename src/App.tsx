@@ -24,6 +24,14 @@ const App = () => {
     setWatched((watched) => [...watched, movie]);
   };
 
+  const handleModifyWatched = (rating: number) => {
+    setWatched(
+      watched.map((movie) =>
+        movie.imdbID === selectedId ? { ...movie, userRating: rating } : movie
+      )
+    );
+  };
+
   useEffect(
     function () {
       async function fetchMovies() {
@@ -81,6 +89,7 @@ const App = () => {
           element: (
             <FilmPage
               onAddWatched={handleAddWatched}
+              onModifyWatched={handleModifyWatched}
               filmId={selectedId}
               watched={watched}
             />

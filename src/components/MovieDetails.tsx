@@ -9,23 +9,31 @@ interface Props {
   filmId: string;
   watched: Movie[];
   onAddWatched: (movie: Movie) => void;
+  onModifyWatched: (rating: number) => void;
 }
 
-const MovieDetails = ({ filmId, onAddWatched, watched }: Props) => {
+const MovieDetails = ({
+  filmId,
+  watched,
+  onAddWatched,
+  onModifyWatched,
+}: Props) => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const isWatched = watched.map((movie) => movie.imdbID).includes(filmId);
 
-  const handleAdd = (rating: number) => {
-    const newWatchedMovie = {
-      imdbID: movie?.imdbID,
-      Title: movie?.Title || "",
-      userRating: rating,
-      Poster: movie?.Poster || "",
-    };
-
-    onAddWatched(newWatchedMovie);
+  const handleSelectedMovie = (rating: number) => {
+    if (!isWatched) {
+      const newWatchedMovie = {
+        imdbID: movie?.imdbID,
+        Title: movie?.Title || "",
+        userRating: rating,
+        Poster: movie?.Poster || "",
+      };
+      onAddWatched(newWatchedMovie);
+    } else {
+      onModifyWatched(rating);
+    }
   };
 
   useEffect(
@@ -92,7 +100,7 @@ const MovieDetails = ({ filmId, onAddWatched, watched }: Props) => {
                 <div>{movie?.Plot}</div>
                 <div className="flex flex-row gap-3 mt-3">
                   <div>Your Rating:</div>
-                  <StarRating onSetRating={handleAdd} />
+                  <StarRating onSetRating={handleSelectedMovie} />
                 </div>
               </div>
             </div>
