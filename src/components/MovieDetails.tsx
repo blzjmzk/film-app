@@ -52,6 +52,18 @@ const MovieDetails = ({
     [filmId]
   );
 
+  useEffect(
+    function () {
+      if (!movie?.Title) return;
+      document.title = ` Movie | ${movie?.Title}`;
+
+      return function () {
+        document.title = "Film App"; //domyślny tytuł
+      };
+    },
+    [movie?.Title]
+  );
+
   return (
     <>
       {isLoading ? (
