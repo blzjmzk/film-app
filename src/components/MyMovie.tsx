@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Movie from "../entities/Movie";
 import Star from "./Star";
 
@@ -9,12 +10,14 @@ interface Props {
 const MyMovie = ({ movie, onDeleteWatched }: Props) => {
   return (
     <div className="card bg-base-300 p-2 shadow-xl">
-      <figure className="relative">
-        <img className="h-52" src={movie.Poster} alt="Watched movie" />
-        <div className="absolute bottom-[160px] left-[3px]">
-          <Star number={movie.userRating} />
-        </div>
-      </figure>
+      <Link key={movie.imdbID} to={`/films/${movie.Title}`}>
+        <figure className="relative">
+          <img className="h-52" src={movie.Poster} alt="Watched movie" />
+          <div className="absolute bottom-[160px] left-[3px]">
+            <Star number={movie.userRating} />
+          </div>
+        </figure>
+      </Link>
       <div className="card-body max-w-[140px]">
         <h2 className="card-title text-sm text-center">{movie.Title}</h2>
         <div className="card-actions justify-center">

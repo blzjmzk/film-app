@@ -1,5 +1,6 @@
 import MyMovie from "../components/MyMovie";
 import Movie from "../entities/Movie";
+import { Link } from "react-router-dom";
 
 interface Props {
   watched: Movie[];
