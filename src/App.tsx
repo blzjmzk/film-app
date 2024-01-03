@@ -10,13 +10,17 @@ const KEY = "93104c0d";
 
 const App = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [watched, setWatched] = useState<Movie[]>([]);
 
   const [query, setQuery] = useState<string>("");
   const [selectedId, setSelectedId] = useState<string>("");
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
+  const [watched, setWatched] = useState<Movie[]>(() => {
+    const storedValue = localStorage.getItem("watched");
+
+    return storedValue ? JSON.parse(storedValue) : [];
+  });
 
   const handleSelectMovie = (id: string) => setSelectedId(id);
 
@@ -35,6 +39,13 @@ const App = () => {
       )
     );
   };
+
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched]
+  );
 
   useEffect(
     function () {
