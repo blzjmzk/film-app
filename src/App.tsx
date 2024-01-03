@@ -5,22 +5,18 @@ import FilmPage from "./pages/FilmPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
 import UserFilms from "./pages/UserFilms";
-
-const KEY = "93104c0d";
+import useMovies from "./hooks/useMovies";
 
 const App = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-
   const [query, setQuery] = useState<string>("");
   const [selectedId, setSelectedId] = useState<string>("");
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string>("");
   const [watched, setWatched] = useState<Movie[]>(() => {
     const storedValue = localStorage.getItem("watched");
 
     return storedValue ? JSON.parse(storedValue) : [];
   });
+
+  const { movies, isLoading, error } = useMovies(query);
 
   const handleSelectMovie = (id: string) => setSelectedId(id);
 
@@ -45,47 +41,6 @@ const App = () => {
       localStorage.setItem("watched", JSON.stringify(watched));
     },
     [watched]
-  );
-
-  useEffect(
-    function () {
-      const controller = new AbortController();
-
-      async function fetchMovies() {
-        try {
-          setIsLoading(true);
-          setError("");
-          const res = await fetch(
-            `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-            { signal: controller.signal } //łączymy controller z fetch
-          );
-          if (!res.ok) {
-            throw new Error("Something went wrong with fetching movies");
-          }
-          const data = await res.json();
-          if (data.Response === "False") throw new Error("Movie not found");
-          setMovies(data.Search);
-          setError("");
-        } catch (err: any) {
-          console.error(err.message);
-          if (err.name !== "AbortError") {
-            setError(err.message);
-          }
-        } finally {
-          setIsLoading(false);
-        }
-      }
-      if (query.length < 3) {
-        setMovies([]);
-        setError("");
-        return;
-      }
-
-      fetchMovies();
-
-      return () => controller.abort();
-    },
-    [query]
   );
 
   const router = createBrowserRouter([
