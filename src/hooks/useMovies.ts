@@ -27,10 +27,12 @@ const useMovies = (query: string) => {
           if (data.Response === "False") throw new Error("Movie not found");
           setMovies(data.Search);
           setError("");
-        } catch (err: any) {
-          console.error(err.message);
-          if (err.name !== "AbortError") {
-            setError(err.message);
+        } catch (err: unknown) {
+          if (err instanceof Error) {
+            console.error(err.message);
+            if (err.name !== "AbortError") {
+              setError(err.message);
+            }
           }
         } finally {
           setIsLoading(false);
